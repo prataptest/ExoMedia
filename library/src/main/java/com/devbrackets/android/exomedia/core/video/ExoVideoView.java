@@ -38,6 +38,7 @@ import com.devbrackets.android.exomedia.core.builder.RenderBuilder;
 import com.devbrackets.android.exomedia.core.builder.SmoothStreamRenderBuilder;
 import com.devbrackets.android.exomedia.core.exoplayer.EMExoPlayer;
 import com.devbrackets.android.exomedia.core.api.VideoViewApi;
+import com.devbrackets.android.exomedia.core.listener.ExoPlayerListener;
 import com.devbrackets.android.exomedia.type.MediaSourceType;
 import com.devbrackets.android.exomedia.util.MediaSourceUtil;
 import com.google.android.exoplayer.MediaFormat;
@@ -295,6 +296,18 @@ public class ExoVideoView extends ResizingTextureView implements VideoViewApi, A
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
             // Purposefully left blank
+        }
+    }
+
+    public void addExoPlayerListener(ExoPlayerListener exoPlayerListener) {
+        if (exoPlayerListener != null && emExoPlayer != null) {
+            emExoPlayer.addListener(exoPlayerListener);
+        }
+    }
+
+    public void removeExoPlayerListener(ExoPlayerListener exoPlayerListener) {
+        if (exoPlayerListener != null && emExoPlayer != null) {
+            emExoPlayer.removeListener(exoPlayerListener);
         }
     }
 }

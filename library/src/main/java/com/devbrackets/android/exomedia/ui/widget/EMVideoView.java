@@ -43,6 +43,8 @@ import com.devbrackets.android.exomedia.core.EMListenerMux;
 import com.devbrackets.android.exomedia.core.api.VideoViewApi;
 import com.devbrackets.android.exomedia.core.builder.RenderBuilder;
 import com.devbrackets.android.exomedia.core.exoplayer.EMExoPlayer;
+import com.devbrackets.android.exomedia.core.listener.ExoPlayerListener;
+import com.devbrackets.android.exomedia.core.video.ExoVideoView;
 import com.devbrackets.android.exomedia.core.video.scale.ScaleType;
 import com.devbrackets.android.exomedia.listener.OnBufferUpdateListener;
 import com.devbrackets.android.exomedia.listener.OnCompletionListener;
@@ -808,6 +810,18 @@ public class EMVideoView extends RelativeLayout {
             }
 
             return true;
+        }
+    }
+
+    public void addExoPlayerListener(ExoPlayerListener exoPlayerListener) {
+        if (exoPlayerListener != null && videoViewImpl instanceof ExoVideoView) {
+            ((ExoVideoView) videoViewImpl).addExoPlayerListener(exoPlayerListener);
+        }
+    }
+
+    public void removeExoPlayerListener(ExoPlayerListener exoPlayerListener) {
+        if (exoPlayerListener != null && videoViewImpl instanceof ExoVideoView) {
+            ((ExoVideoView) videoViewImpl).removeExoPlayerListener(exoPlayerListener);
         }
     }
 }

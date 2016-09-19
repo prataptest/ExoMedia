@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
-apply plugin: 'bintray-release'
+//apply plugin: 'maven'
+//apply plugin: 'bintray-release'
 
-def versionMajor = 3
-def versionMinor = 0
-def versionPatch = 3
+//def versionMajor = 3
+//def versionMinor = 0
+//def versionPatch = 3
 
-def libraryGroupId = 'com.devbrackets.android'
-def libraryBaseName = 'exomedia'
-def libraryVersion = "${versionMajor}.${versionMinor}.${versionPatch}" // release version
+//def libraryGroupId = 'com.devbrackets.android'
+//def libraryBaseName = 'exomedia'
+//def libraryVersion = "${versionMajor}.${versionMinor}.${versionPatch}" // release version
 
 dependencies {
     // Android
@@ -20,6 +20,8 @@ dependencies {
     //Android unit tests
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile "junit:junit:4.12"
+    // okhttp client
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
 }
 
 android {
@@ -30,9 +32,9 @@ android {
         minSdkVersion 14
         targetSdkVersion 24
 
-        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100
-        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100
+//        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -54,26 +56,26 @@ android {
 }
 
 // ======== MAVEN DEPLOY to local cache or nexus repo (to make accessible to local projects) (command: ./gradlew clean aRel uploadArchives) ========
-uploadArchives {
-    repositories {
-        // deploy to local
-        mavenDeployer {
-            repository (url: "file://${System.env.HOME}/.m2/repository/")
-            pom.groupId = libraryGroupId
-            pom.artifactId = libraryBaseName
-            pom.version = libraryVersion //Normally I would append "-SNAPSHOT" but newer gradle/maven can't always find them
-            pom.packaging = 'aar'
-            uniqueVersion = false // don't put in a timestamp on the filename (other project will not be able to depend on it)
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        // deploy to local
+//        mavenDeployer {
+//            repository (url: "file://${System.env.HOME}/.m2/repository/")
+//            pom.groupId = libraryGroupId
+//            pom.artifactId = libraryBaseName
+//            pom.version = libraryVersion //Normally I would append "-SNAPSHOT" but newer gradle/maven can't always find them
+//            pom.packaging = 'aar'
+//            uniqueVersion = false // don't put in a timestamp on the filename (other project will not be able to depend on it)
+//        }
+//    }
+//}
 
 // ======= BINTRAY DEPLOY (command: $ ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false) ====
-publish {
-    groupId = libraryGroupId
-    artifactId = libraryBaseName
-    uploadName = 'ExoMedia'
-    version = libraryVersion
-    autoPublish = false
-    dryRun = false
-}
+//publish {
+//    groupId = libraryGroupId
+//    artifactId = libraryBaseName
+//    uploadName = 'ExoMedia'
+//    version = libraryVersion
+//    autoPublish = false
+//    dryRun = false
+//}

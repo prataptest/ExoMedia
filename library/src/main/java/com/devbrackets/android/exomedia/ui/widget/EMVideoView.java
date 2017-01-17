@@ -47,6 +47,8 @@ import com.devbrackets.android.exomedia.core.exoplayer.EMExoPlayer;
 import com.devbrackets.android.exomedia.core.listener.Id3MetadataListener;
 import com.devbrackets.android.exomedia.core.video.exo.ExoTextureVideoView;
 import com.devbrackets.android.exomedia.core.video.mp.NativeTextureVideoView;
+import com.devbrackets.android.exomedia.core.listener.ExoPlayerListener;
+import com.devbrackets.android.exomedia.core.video.ExoVideoView;
 import com.devbrackets.android.exomedia.core.video.scale.ScaleType;
 import com.devbrackets.android.exomedia.listener.OnBufferUpdateListener;
 import com.devbrackets.android.exomedia.listener.OnCompletionListener;
@@ -967,6 +969,18 @@ public class EMVideoView extends RelativeLayout {
             apiImplLegacyResourceId = typedArray.getResourceId(R.styleable.EMVideoView_videoViewApiImplLegacy, apiImplLegacyResourceId);
 
             typedArray.recycle();
+        }
+    }
+
+    public void addExoPlayerListener(ExoPlayerListener exoPlayerListener) {
+        if (exoPlayerListener != null && videoViewImpl instanceof ExoVideoView) {
+            ((ExoVideoView) videoViewImpl).addExoPlayerListener(exoPlayerListener);
+        }
+    }
+
+    public void removeExoPlayerListener(ExoPlayerListener exoPlayerListener) {
+        if (exoPlayerListener != null && videoViewImpl instanceof ExoVideoView) {
+            ((ExoVideoView) videoViewImpl).removeExoPlayerListener(exoPlayerListener);
         }
     }
 }

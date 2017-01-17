@@ -23,6 +23,15 @@ import android.util.AttributeSet;
 
 import com.devbrackets.android.exomedia.core.api.VideoViewApi;
 import com.devbrackets.android.exomedia.core.video.exo.ExoTextureVideoView;
+import com.devbrackets.android.exomedia.core.listener.ExoPlayerListener;
+import com.devbrackets.android.exomedia.type.MediaSourceType;
+import com.devbrackets.android.exomedia.util.MediaSourceUtil;
+import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.audio.AudioCapabilities;
+import com.google.android.exoplayer.audio.AudioCapabilitiesReceiver;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * A {@link VideoViewApi} implementation that uses the ExoPlayer
@@ -48,5 +57,17 @@ public class ExoVideoView extends ExoTextureVideoView {
 
     public ExoVideoView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    public void addExoPlayerListener(ExoPlayerListener exoPlayerListener) {
+        if (exoPlayerListener != null && emExoPlayer != null) {
+            emExoPlayer.addListener(exoPlayerListener);
+        }
+    }
+
+    public void removeExoPlayerListener(ExoPlayerListener exoPlayerListener) {
+        if (exoPlayerListener != null && emExoPlayer != null) {
+            emExoPlayer.removeListener(exoPlayerListener);
+        }
     }
 }
